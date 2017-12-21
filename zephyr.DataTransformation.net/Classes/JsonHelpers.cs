@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 using YamlDotNet.Serialization;
 
@@ -16,12 +15,15 @@ namespace zephyr.DataTransformation
     {
         public string Transform(string json, string xslt)
         {
+            if( string.IsNullOrWhiteSpace( xslt ) )
+                return json;
+
             string jsonAsXml = ConvertToFormat( json, FormatType.Xml );
             jsonAsXml = XmlHelpers.Transform( jsonAsXml, xslt );
             return XmlHelpers.ConvertToFormat( jsonAsXml, FormatType.Json );
         }
 
-        public static string ConvertToFormat(string inputJson, FormatType targetFormatType)
+        public static string ConvertToFormat(string json, FormatType targetFormatType)
         {
             string serializedData = "";
 
@@ -29,14 +31,14 @@ namespace zephyr.DataTransformation
             {
                 case FormatType.Json:
                 {
-                    serializedData = inputJson;
+                    serializedData = json;
                     break;
                 }
                 case FormatType.Yaml:
                 {
                     //convert the string JSON data into an object so yaml.net can serialize it to YAML nicely
                     ExpandoObjectConverter expConverter = new ExpandoObjectConverter();
-                    dynamic deserializedObject = JsonConvert.DeserializeObject<ExpandoObject>( inputJson, expConverter );
+                    dynamic deserializedObject = JsonConvert.DeserializeObject<ExpandoObject>( json, expConverter );
 
                     Serializer serializer = new Serializer();
                     serializedData = serializer.Serialize( deserializedObject );
@@ -45,14 +47,14 @@ namespace zephyr.DataTransformation
                 }
                 case FormatType.Xml:
                 {
-                    XmlDocument doc = JsonConvert.DeserializeXmlNode( inputJson );
+                    XmlDocument doc = JsonConvert.DeserializeXmlNode( json );
                     serializedData = XmlHelpers.Serialize<string>( doc );
 
                     break;
                 }
                 case FormatType.None:
                 {
-                    serializedData = inputJson;
+                    serializedData = json;
                     break;
                 }
             }
@@ -60,100 +62,26 @@ namespace zephyr.DataTransformation
             return serializedData;
         }
 
-
-        //taken from accepted answer on
-        //  http://stackoverflow.com/questions/4580397/json-formatter-in-c
-        //minor code cleanup, plus added --> s = s.Replace( " \"", "\"" ).Replace( ": {", ":{" );
-        //to deal with output of yaml.net
-        private const string __indent = "  ";
-        public static string FormatJson(string s)
+        public static object Select(string json, string expression)
         {
-            s = s.Replace( " \"", "\"" ).Replace( ": {", ":{" );
-            int indent = 0;
-            bool quoted = false;
-            StringBuilder sb = new StringBuilder();
+            List<string> result = new List<string>();
 
-            for( int i = 0; i < s.Length; i++ )
-            {
-                var ch = s[i];
-                switch( ch )
-                {
-                    case '{':
-                    case '[':
-                    {
-                        sb.Append( ch );
-                        if( !quoted )
-                        {
-                            sb.AppendLine();
-                            Enumerable.Range( 0, ++indent ).ForEach( item => sb.Append( __indent ) );
-                        }
-                        break;
-                    }
+            IEnumerable<JToken> tokens = JObject.Parse( json ).SelectTokens( expression );
 
-                    case '}':
-                    case ']':
-                    {
-                        if( !quoted )
-                        {
-                            sb.AppendLine();
-                            Enumerable.Range( 0, --indent ).ForEach( item => sb.Append( __indent ) );
-                        }
-                        sb.Append( ch );
-                        break;
-                    }
+            foreach( JToken token in tokens )
+                result.Add( token.ToString() );
 
-                    case '"':
-                    {
-                        sb.Append( ch );
-                        bool escaped = false;
-
-                        int index = i;
-                        while( index > 0 && s[--index] == '\\' )
-                            escaped = !escaped;
-
-                        if( !escaped )
-                            quoted = !quoted;
-                        break;
-                    }
-
-                    case ',':
-                    {
-                        sb.Append( ch );
-                        if( !quoted )
-                        {
-                            sb.AppendLine();
-                            Enumerable.Range( 0, indent ).ForEach( item => sb.Append( __indent ) );
-                        }
-                        break;
-                    }
-
-                    case ':':
-                    {
-                        sb.Append( ch );
-                        if( !quoted )
-                            sb.Append( " " );
-                        break;
-                    }
-
-                    default:
-                    {
-                        sb.Append( ch );
-                        break;
-                    }
-                }
-            }
-            return sb.ToString();
+            if( result.Count == 0 )
+                return null;
+            else if( result.Count == 1 )
+                return result[0];
+            else
+                return result;
         }
-    }
 
-    static class Extensions
-    {
-        public static void ForEach<T>(this IEnumerable<T> ie, Action<T> action)
+        public static string Format(string json, Newtonsoft.Json.Formatting format = Newtonsoft.Json.Formatting.Indented)
         {
-            foreach( var i in ie )
-            {
-                action( i );
-            }
+            return JObject.Parse( json ).ToString( format );
         }
     }
 }

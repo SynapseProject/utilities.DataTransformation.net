@@ -13,12 +13,15 @@ namespace zephyr.DataTransformation
     {
         public string Transform(string yaml, string xslt)
         {
+            if( string.IsNullOrWhiteSpace( xslt ) )
+                return yaml;
+
             string yamlAsXml = ConvertToFormat( yaml, FormatType.Xml );
             yamlAsXml = XmlHelpers.Transform( yamlAsXml, xslt );
             return XmlHelpers.ConvertToFormat( yamlAsXml, FormatType.Yaml );
         }
 
-        public static string ConvertToFormat(string inputYaml, FormatType targetFormatType)
+        public static string ConvertToFormat(string yaml, FormatType targetFormatType)
         {
             string serializedData = "";
 
@@ -26,18 +29,19 @@ namespace zephyr.DataTransformation
             {
                 case FormatType.Json:
                 {
-                    serializedData = Serialize( inputYaml, serializeAsJson: true, formatJson: true, emitDefaultValues: false );
+                    serializedData = Serialize( yaml, serializeAsJson: true, formatJson: true, emitDefaultValues: false );
 
                     break;
                 }
                 case FormatType.Yaml:
                 {
-                    serializedData = inputYaml;
+                    serializedData = yaml;
                     break;
                 }
                 case FormatType.Xml:
                 {
-                    serializedData = Serialize( inputYaml, serializeAsJson: true, formatJson: true, emitDefaultValues: false );
+                    Dictionary<object, object> yamlAsDict = Deserialize( yaml );
+                    serializedData = Serialize( yamlAsDict, serializeAsJson: true, formatJson: true, emitDefaultValues: false );
                     XmlDocument doc = JsonConvert.DeserializeXmlNode( serializedData );
                     serializedData = XmlHelpers.Serialize<string>( doc );
 
@@ -45,7 +49,7 @@ namespace zephyr.DataTransformation
                 }
                 case FormatType.None:
                 {
-                    serializedData = inputYaml;
+                    serializedData = yaml;
                     break;
                 }
             }
@@ -79,7 +83,7 @@ namespace zephyr.DataTransformation
                 using( StringWriter writer = new StringWriter() )
                 {
                     Serialize( writer, data, serializeAsJson, emitDefaultValues );
-                    result = serializeAsJson && formatJson ? JsonHelpers.FormatJson( writer.ToString() ) : writer.ToString();
+                    result = serializeAsJson && formatJson ? JsonHelpers.Format( writer.ToString() ) : writer.ToString();
                 }
 
             return result;

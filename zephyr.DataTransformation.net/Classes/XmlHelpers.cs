@@ -85,15 +85,15 @@ namespace zephyr.DataTransformation
             return buf;
         }
 
-        public static bool IsValidXml(string value)
+        public static bool IsValidXml(string xml)
         {
             bool isValid = true;
             try
             {
-                if( !string.IsNullOrEmpty( value ) )
+                if( !string.IsNullOrEmpty( xml ) )
                 {
                     XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.LoadXml( value );
+                    xmlDoc.LoadXml( xml );
                     isValid = true;
                 }
             }
@@ -104,7 +104,7 @@ namespace zephyr.DataTransformation
             return isValid;
         }
 
-        public static string ConvertToFormat(string inputXml, FormatType targetFormatType)
+        public static string ConvertToFormat(string xml, FormatType targetFormatType)
         {
             string serializedData = "";
 
@@ -113,7 +113,7 @@ namespace zephyr.DataTransformation
                 case FormatType.Json:
                 {
                     XmlDocument doc = new XmlDocument();
-                    doc.LoadXml( inputXml );
+                    doc.LoadXml( xml );
                     if( doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration )
                         doc.RemoveChild( doc.FirstChild );
                     serializedData = JsonConvert.SerializeXmlNode( doc );
@@ -123,7 +123,7 @@ namespace zephyr.DataTransformation
                 case FormatType.Yaml:
                 {
                     XmlDocument doc = new XmlDocument();
-                    doc.LoadXml( inputXml );
+                    doc.LoadXml( xml );
                     if( doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration )
                         doc.RemoveChild( doc.FirstChild );
                     serializedData = JsonConvert.SerializeXmlNode( doc );
@@ -140,7 +140,7 @@ namespace zephyr.DataTransformation
                 case FormatType.Xml:
                 case FormatType.None:
                 {
-                    serializedData = inputXml;
+                    serializedData = xml;
                     break;
                 }
             }
