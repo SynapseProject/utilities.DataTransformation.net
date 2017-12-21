@@ -11,7 +11,7 @@ namespace zephyr.DataTransformation
 {
     public class YamlHelpers
     {
-        public string Transform(string yaml, string xslt)
+        public static string Transform(string yaml, string xslt)
         {
             if( string.IsNullOrWhiteSpace( xslt ) )
                 return yaml;

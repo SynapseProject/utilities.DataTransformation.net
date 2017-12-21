@@ -30,12 +30,13 @@ namespace zephyr.DataTransformation.UnitTests
             _baseXml = File.ReadAllText( "base.xml" );
             _serversXml = File.ReadAllText( "servers.xml" );
             _baseJson = File.ReadAllText( "base.json" );
+            _serversJson = File.ReadAllText( "servers.json" );
             _baseYaml = File.ReadAllText( "base.yaml" );
-            //_serversJson = File.ReadAllText( "servers.json" );
+            _serversYaml = File.ReadAllText( "servers.yaml" );
         }
 
         [Test]
-        [Category( "xml" )]
+        [Category( "Xml" )]
         public void TransformXml()
         {
             string result = XmlHelpers.Transform( _baseXml, _xslt );
@@ -44,7 +45,25 @@ namespace zephyr.DataTransformation.UnitTests
         }
 
         [Test]
-        [Category( "xml" )]
+        [Category( "Json" )]
+        public void TransformJson()
+        {
+            string result = JsonHelpers.Transform( _baseJson, _xslt );
+
+            Assert.AreEqual( _serversJson, result );
+        }
+
+        [Test]
+        [Category( "Yaml" )]
+        public void TransformYaml()
+        {
+            string result = YamlHelpers.Transform( _baseYaml, _xslt );
+
+            Assert.AreEqual( _serversYaml, result );
+        }
+
+        [Test]
+        [Category( "Xml" )]
         [TestCase( FormatType.Json )]
         [TestCase( FormatType.Yaml )]
         public void ConvertXml(FormatType format)
@@ -54,10 +73,20 @@ namespace zephyr.DataTransformation.UnitTests
         }
 
         [Test]
-        [Category( "josn" )]
+        [Category( "Json" )]
         [TestCase( FormatType.Xml )]
         [TestCase( FormatType.Yaml )]
         public void ConvertJson(FormatType format)
+        {
+            string result = JsonHelpers.ConvertToFormat( _baseJson, format );
+            CompareConvertResult( result, format );
+        }
+
+        [Test]
+        [Category( "Yaml" )]
+        [TestCase( FormatType.Xml )]
+        [TestCase( FormatType.Json )]
+        public void ConvertYaml(FormatType format)
         {
             string result = JsonHelpers.ConvertToFormat( _baseJson, format );
             CompareConvertResult( result, format );

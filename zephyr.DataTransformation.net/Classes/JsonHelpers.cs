@@ -13,7 +13,7 @@ namespace zephyr.DataTransformation
 {
     public class JsonHelpers
     {
-        public string Transform(string json, string xslt)
+        public static string Transform(string json, string xslt)
         {
             if( string.IsNullOrWhiteSpace( xslt ) )
                 return json;

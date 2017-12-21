@@ -59,6 +59,8 @@
     <None Include="packages.config" />
     <None Include="Resources\base.json" />
     <None Include="Resources\base.yaml" />
+    <None Include="Resources\servers.json" />
+    <None Include="Resources\servers.yaml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\zephyr.DataTransformation.net\zephyr.DataTransformation.net.csproj">
