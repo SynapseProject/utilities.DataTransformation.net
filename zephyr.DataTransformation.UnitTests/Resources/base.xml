@@ -1,0 +1,33 @@
+﻿<Ec2Response>
+  <Count>5</Count>
+  <Ec2Instances>
+    <Ec2Instance>
+      <Architecture>x86_64</Architecture>
+      <AvailabilityZone>eu-west-1c</AvailabilityZone>
+      <CloudEnvironment>xxxxxx</CloudEnvironment>
+      <CostCentre>xxxxxx</CostCentre>
+      <InstanceId>i-xxxxxx</InstanceId>
+      <InstanceState>running</InstanceState>
+      <InstanceType>t2.medium</InstanceType>
+      <LaunchTime>2016-08-11T08:17:29-05:00</LaunchTime>
+      <Name>xxxxxx</Name>
+      <PrivateDnsName>1-xxxxxx</PrivateDnsName>
+      <PrivateIpAddress>xxx.xxx.xxx.xxx</PrivateIpAddress>
+    </Ec2Instance>
+    <Ec2Instance>
+      <Architecture>x86_64</Architecture>
+      <AvailabilityZone>eu-west-1c</AvailabilityZone>
+      <CloudEnvironment>xxxxxx</CloudEnvironment>
+      <CostCentre>yyyyyy</CostCentre>
+      <InstanceId>i-xxxxxx</InstanceId>
+      <InstanceState>running</InstanceState>
+      <InstanceType>t2.medium</InstanceType>
+      <LaunchTime>2017-10-17T06:10:18-05:00</LaunchTime>
+      <Name>xxxxxx</Name>
+      <PrivateDnsName>2-xxxxxx</PrivateDnsName>
+      <PrivateIpAddress>xxx.xxx.xxx.xxx</PrivateIpAddress>
+    </Ec2Instance>
+  </Ec2Instances>
+  <ExitCode>0</ExitCode>
+  <Summary>Querying against AWS has been processed.</Summary>
+</Ec2Response>

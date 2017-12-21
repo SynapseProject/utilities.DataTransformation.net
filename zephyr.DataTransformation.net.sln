@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zephyr.DataTransformation.net", "zephyr.DataTransformation.net\zephyr.DataTransformation.net.csproj", "{4B9BCD5C-13F4-4966-83FE-31C811129DED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zephyr.DataTransformation.UnitTests", "zephyr.DataTransformation.UnitTests\zephyr.DataTransformation.UnitTests.csproj", "{931E1D7B-6121-4AD1-AE56-44F4B43A510B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4B9BCD5C-13F4-4966-83FE-31C811129DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B9BCD5C-13F4-4966-83FE-31C811129DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B9BCD5C-13F4-4966-83FE-31C811129DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{931E1D7B-6121-4AD1-AE56-44F4B43A510B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{931E1D7B-6121-4AD1-AE56-44F4B43A510B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{931E1D7B-6121-4AD1-AE56-44F4B43A510B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{931E1D7B-6121-4AD1-AE56-44F4B43A510B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

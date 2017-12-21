@@ -116,7 +116,7 @@ namespace zephyr.DataTransformation
                     doc.LoadXml( xml );
                     if( doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration )
                         doc.RemoveChild( doc.FirstChild );
-                    serializedData = JsonConvert.SerializeXmlNode( doc );
+                    serializedData = JsonConvert.SerializeXmlNode( doc, Newtonsoft.Json.Formatting.Indented );
 
                     break;
                 }

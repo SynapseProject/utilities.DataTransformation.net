@@ -1,0 +1,28 @@
+﻿Ec2Response:
+  Count: 5
+  Ec2Instances:
+    Ec2Instance:
+    - Architecture: x86_64
+      AvailabilityZone: eu-west-1c
+      CloudEnvironment: xxxxxx
+      CostCentre: xxxxxx
+      InstanceId: i-xxxxxx
+      InstanceState: running
+      InstanceType: t2.medium
+      LaunchTime: 2016-08-11T08:17:29.0000000-05:00
+      Name: xxxxxx
+      PrivateDnsName: 1-xxxxxx
+      PrivateIpAddress: xxx.xxx.xxx.xxx
+    - Architecture: x86_64
+      AvailabilityZone: eu-west-1c
+      CloudEnvironment: xxxxxx
+      CostCentre: yyyyyy
+      InstanceId: i-xxxxxx
+      InstanceState: running
+      InstanceType: t2.medium
+      LaunchTime: 2017-10-17T06:10:18.0000000-05:00
+      Name: xxxxxx
+      PrivateDnsName: 2-xxxxxx
+      PrivateIpAddress: xxx.xxx.xxx.xxx
+  ExitCode: 0
+  Summary: Querying against AWS has been processed.
