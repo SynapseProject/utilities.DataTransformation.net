@@ -12,7 +12,7 @@ using Newtonsoft.Json.Converters;
 
 using YamlDotNet.Serialization;
 
-namespace zephyr.DataTransformation
+namespace Zephyr.DataTransformation
 {
     public class XmlHelpers
     {

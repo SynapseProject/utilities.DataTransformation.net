@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 using YamlDotNet.Serialization;
 
-namespace zephyr.DataTransformation
+namespace Zephyr.DataTransformation
 {
     public class JsonHelpers
     {

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 using YamlDotNet.Serialization;
 
-namespace zephyr.DataTransformation
+namespace Zephyr.DataTransformation
 {
     public class YamlHelpers
     {

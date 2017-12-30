@@ -2,9 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 
-using zephyr.DataTransformation;
-
-namespace zephyr.DataTransformation.UnitTests
+namespace Zephyr.DataTransformation.UnitTests
 {
     [TestFixture]
     public class UnitTests

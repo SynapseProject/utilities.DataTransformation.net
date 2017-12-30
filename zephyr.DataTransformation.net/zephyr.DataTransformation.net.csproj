@@ -7,8 +7,8 @@
     <ProjectGuid>{4B9BCD5C-13F4-4966-83FE-31C811129DED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>zephyr.DataTransformation</RootNamespace>
-    <AssemblyName>zephyr.DataTransformation.net</AssemblyName>
+    <RootNamespace>Zephyr.DataTransformation</RootNamespace>
+    <AssemblyName>Zephyr.DataTransformation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\FormatType.cs" />
+    <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\YamlHelpers.cs" />
     <Compile Include="Classes\JsonHelpers.cs" />
     <Compile Include="Classes\XmlHelpers.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zephyr.DataTransformation
+namespace Zephyr.DataTransformation
 {
     public enum FormatType
     {
