@@ -63,7 +63,7 @@ namespace Zephyr.DataTransformation
 
             // return doc
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml( buf );
+            SafeLoadXml( ref doc, buf );
             return doc;
         }
 
@@ -83,6 +83,21 @@ namespace Zephyr.DataTransformation
 
             // return string
             return buf;
+        }
+
+        public static void SafeLoadXml(ref XmlDocument doc, string xml)
+        {
+            try
+            {
+                doc.LoadXml( xml );
+            }
+            catch( XmlException ex )
+            {
+                if( ex.HResult == -2146232000 ) //Xml_MultipleRoots
+                    doc.LoadXml( $"<root>{xml}</root>" );
+                else
+                    throw;
+            }
         }
 
         public static bool IsValidXml(string xml)
@@ -113,7 +128,8 @@ namespace Zephyr.DataTransformation
                 case FormatType.Json:
                 {
                     XmlDocument doc = new XmlDocument();
-                    doc.LoadXml( xml );
+                    SafeLoadXml( ref doc, xml );
+
                     if( doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration )
                         doc.RemoveChild( doc.FirstChild );
                     serializedData = JsonConvert.SerializeXmlNode( doc, Newtonsoft.Json.Formatting.Indented );
@@ -123,7 +139,8 @@ namespace Zephyr.DataTransformation
                 case FormatType.Yaml:
                 {
                     XmlDocument doc = new XmlDocument();
-                    doc.LoadXml( xml );
+                    SafeLoadXml( ref doc, xml );
+
                     if( doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration )
                         doc.RemoveChild( doc.FirstChild );
                     serializedData = JsonConvert.SerializeXmlNode( doc );

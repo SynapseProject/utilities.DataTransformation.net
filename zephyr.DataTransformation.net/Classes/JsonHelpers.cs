@@ -13,14 +13,14 @@ namespace Zephyr.DataTransformation
 {
     public class JsonHelpers
     {
-        public static string Transform(string json, string xslt)
+        public static string Transform(string json, string xslt, bool preserveOutputAsIs = true)
         {
             if( string.IsNullOrWhiteSpace( xslt ) )
                 return json;
 
             string jsonAsXml = ConvertToFormat( json, FormatType.Xml );
             jsonAsXml = XmlHelpers.Transform( jsonAsXml, xslt );
-            return XmlHelpers.ConvertToFormat( jsonAsXml, FormatType.Json );
+            return preserveOutputAsIs ? jsonAsXml : XmlHelpers.ConvertToFormat( jsonAsXml, FormatType.Json );
         }
 
         public static string ConvertToFormat(string json, FormatType targetFormatType)

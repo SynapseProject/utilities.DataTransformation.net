@@ -11,14 +11,14 @@ namespace Zephyr.DataTransformation
 {
     public class YamlHelpers
     {
-        public static string Transform(string yaml, string xslt)
+        public static string Transform(string yaml, string xslt, bool preserveOutputAsIs = true)
         {
             if( string.IsNullOrWhiteSpace( xslt ) )
                 return yaml;
 
             string yamlAsXml = ConvertToFormat( yaml, FormatType.Xml );
             yamlAsXml = XmlHelpers.Transform( yamlAsXml, xslt );
-            return XmlHelpers.ConvertToFormat( yamlAsXml, FormatType.Yaml );
+            return preserveOutputAsIs ? yamlAsXml : XmlHelpers.ConvertToFormat( yamlAsXml, FormatType.Yaml );
         }
 
         public static string ConvertToFormat(string yaml, FormatType targetFormatType)

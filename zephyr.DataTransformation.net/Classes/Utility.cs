@@ -4,21 +4,21 @@ namespace Zephyr.DataTransformation
 {
     public class WrapperUtility
     {
-        public static string Transform(FormatType format, string data, string xslt)
+        public static string Transform(FormatType format, string data, string xslt, bool preserveOutputAsIs = true)
         {
             switch( format )
             {
                 case FormatType.Yaml:
                 {
-                    return YamlHelpers.Transform( data, xslt );
+                    return YamlHelpers.Transform( data, xslt, preserveOutputAsIs );
                 }
                 case FormatType.Json:
                 {
-                    return JsonHelpers.Transform( data, xslt );
+                    return JsonHelpers.Transform( data, xslt, preserveOutputAsIs );
                 }
                 case FormatType.Xml:
                 {
-                    return XmlHelpers.Transform( data, xslt );
+                    return XmlHelpers.Transform( data, xslt, formatOutputIndented: preserveOutputAsIs );
                 }
                 default:
                 {
