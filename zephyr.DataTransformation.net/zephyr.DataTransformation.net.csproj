@@ -48,7 +48,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CommandLine.cs" />
     <Compile Include="Classes\FormatType.cs" />
+    <Compile Include="Classes\RegexHelpers.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\YamlHelpers.cs" />
     <Compile Include="Classes\JsonHelpers.cs" />
