@@ -15,6 +15,9 @@ namespace Zephyr.DataTransformation
     {
         public static string Transform(string json, string xslt, bool preserveOutputAsIs = true)
         {
+            if ( string.IsNullOrWhiteSpace( json ) )
+                return null;
+
             if( string.IsNullOrWhiteSpace( xslt ) )
                 return json;
 
@@ -25,6 +28,9 @@ namespace Zephyr.DataTransformation
 
         public static string ConvertToFormat(string json, FormatType targetFormatType)
         {
+            if (string.IsNullOrWhiteSpace(json))
+                return null;
+
             string serializedData = "";
 
             switch( targetFormatType )
@@ -64,6 +70,9 @@ namespace Zephyr.DataTransformation
 
         public static object Select(string json, string expression)
         {
+            if (string.IsNullOrWhiteSpace(json))
+                return null;
+
             List<string> result = new List<string>();
 
             IEnumerable<JToken> tokens = JObject.Parse( json ).SelectTokens( expression );

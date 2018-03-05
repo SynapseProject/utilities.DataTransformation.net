@@ -121,6 +121,9 @@ namespace Zephyr.DataTransformation
 
         public static string ConvertToFormat(string xml, FormatType targetFormatType)
         {
+            if (string.IsNullOrWhiteSpace(xml))
+                return null;
+
             string serializedData = "";
 
             switch( targetFormatType )

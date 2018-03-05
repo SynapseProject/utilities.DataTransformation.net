@@ -44,20 +44,30 @@ namespace Zephyr.DataTransformation.UnitTests
 
         [Test]
         [Category( "Json" )]
-        public void TransformJson()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TransformJson(bool preserveOutputAsIs)
         {
-            string result = JsonHelpers.Transform( _baseJson, _xslt );
+            string result = JsonHelpers.Transform( _baseJson, _xslt, preserveOutputAsIs);
 
-            Assert.AreEqual( _serversJson, result );
+            if (preserveOutputAsIs)
+                Assert.AreEqual(_serversXml, result);
+            else
+                Assert.AreEqual( _serversJson, result );
         }
 
         [Test]
         [Category( "Yaml" )]
-        public void TransformYaml()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TransformYaml(bool preserveOutputAsIs)
         {
-            string result = YamlHelpers.Transform( _baseYaml, _xslt );
+            string result = YamlHelpers.Transform( _baseYaml, _xslt, preserveOutputAsIs);
 
-            Assert.AreEqual( _serversYaml, result );
+            if (preserveOutputAsIs)
+                Assert.AreEqual(_serversXml, result);
+            else
+                Assert.AreEqual( _serversYaml, result );
         }
 
         [Test]
@@ -86,7 +96,7 @@ namespace Zephyr.DataTransformation.UnitTests
         [TestCase( FormatType.Json )]
         public void ConvertYaml(FormatType format)
         {
-            string result = JsonHelpers.ConvertToFormat( _baseJson, format );
+            string result = YamlHelpers.ConvertToFormat( _baseJson, format );
             CompareConvertResult( result, format );
         }
 

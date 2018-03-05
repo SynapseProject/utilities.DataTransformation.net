@@ -13,6 +13,9 @@ namespace Zephyr.DataTransformation
     {
         public static string Transform(string yaml, string xslt, bool preserveOutputAsIs = true)
         {
+            if (string.IsNullOrWhiteSpace(yaml))
+                return null;
+
             if( string.IsNullOrWhiteSpace( xslt ) )
                 return yaml;
 
@@ -23,13 +26,18 @@ namespace Zephyr.DataTransformation
 
         public static string ConvertToFormat(string yaml, FormatType targetFormatType)
         {
+            if (string.IsNullOrWhiteSpace(yaml))
+                return null;
+
             string serializedData = "";
 
             switch( targetFormatType )
             {
                 case FormatType.Json:
                 {
-                    serializedData = Serialize( yaml, serializeAsJson: true, formatJson: true, emitDefaultValues: false );
+                    Deserializer deserializer = new Deserializer();                    
+                    object yamlObject = deserializer.Deserialize(new StringReader(yaml));
+                    serializedData = Serialize( yamlObject, serializeAsJson: true, formatJson: true, emitDefaultValues: false );
 
                     break;
                 }

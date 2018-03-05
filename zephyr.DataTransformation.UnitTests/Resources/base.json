@@ -11,7 +11,6 @@
           "InstanceId": "i-xxxxxx",
           "InstanceState": "running",
           "InstanceType": "t2.medium",
-          "LaunchTime": "2016-08-11T08:17:29-05:00",
           "Name": "xxxxxx",
           "PrivateDnsName": "1-xxxxxx",
           "PrivateIpAddress": "xxx.xxx.xxx.xxx"
@@ -24,7 +23,6 @@
           "InstanceId": "i-xxxxxx",
           "InstanceState": "running",
           "InstanceType": "t2.medium",
-          "LaunchTime": "2017-10-17T06:10:18-05:00",
           "Name": "xxxxxx",
           "PrivateDnsName": "2-xxxxxx",
           "PrivateIpAddress": "xxx.xxx.xxx.xxx"

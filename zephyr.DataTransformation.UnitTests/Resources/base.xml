@@ -9,7 +9,6 @@
       <InstanceId>i-xxxxxx</InstanceId>
       <InstanceState>running</InstanceState>
       <InstanceType>t2.medium</InstanceType>
-      <LaunchTime>2016-08-11T08:17:29-05:00</LaunchTime>
       <Name>xxxxxx</Name>
       <PrivateDnsName>1-xxxxxx</PrivateDnsName>
       <PrivateIpAddress>xxx.xxx.xxx.xxx</PrivateIpAddress>
@@ -22,7 +21,6 @@
       <InstanceId>i-xxxxxx</InstanceId>
       <InstanceState>running</InstanceState>
       <InstanceType>t2.medium</InstanceType>
-      <LaunchTime>2017-10-17T06:10:18-05:00</LaunchTime>
       <Name>xxxxxx</Name>
       <PrivateDnsName>2-xxxxxx</PrivateDnsName>
       <PrivateIpAddress>xxx.xxx.xxx.xxx</PrivateIpAddress>
