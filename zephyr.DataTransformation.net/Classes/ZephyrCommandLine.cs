@@ -247,7 +247,7 @@ public class ZephyrCommandLine
         ConsoleColor defaultColor = Console.ForegroundColor;
         Console_WriteLine($"zephyr.datatransformation.dll, Version: {typeof(ZephyrCommandLine).Assembly.GetName().Version}\r\n", ConsoleColor.Green);
         Console.WriteLine("Syntax:");
-        Console_WriteLine("  zephyr.cli datatransformation {0}serializationFormat{1} {0}action{1} {0}parameters{1}\r\n", ConsoleColor.Cyan, "{", "}");
+        Console_WriteLine("  zephyr datatransformation {0}serializationFormat{1} {0}action{1} {0}parameters{1}\r\n", ConsoleColor.Cyan, "{", "}");
         Console_WriteLine("  serializationFormat: json|yaml|xml\r\n", ConsoleColor.Green);
         Console.WriteLine($"  {"action:",-23}parameters\r\n", "");
         Console.WriteLine($"      {"Convert",-19}Convert file to outputFormat");
@@ -264,13 +264,13 @@ public class ZephyrCommandLine
         Console.WriteLine($"      {"",-19}[options:{{RegexOptions}}]\r\n");
 
         Console.WriteLine("  Examples:");
-        Console.WriteLine("     zephyr.cli datatransformation json convert file:c:\\temp\\products.json");
+        Console.WriteLine("     zephyr datatransformation json convert file:c:\\temp\\products.json");
         Console.WriteLine("         outputFormat:yaml\r\n");
-        Console.WriteLine("     zephyr.cli datatransformation json xsltransform file:c:\\temp\\products.json");
+        Console.WriteLine("     zephyr datatransformation json xsltransform file:c:\\temp\\products.json");
         Console.WriteLine("         xslt:c:\\temp\\foo.xslt\r\n");
-        Console.WriteLine("     zephyr.cli datatransformation json jsonselect file:c:\\temp\\products.json");
+        Console.WriteLine("     zephyr datatransformation json jsonselect file:c:\\temp\\products.json");
         Console.WriteLine("        expression:$..Products[?(@.Price >= 50)].Name\r\n");
-        Console.WriteLine("     zephyr.cli datatransformation json regexmatch file:c:\\temp\\products.json");
+        Console.WriteLine("     zephyr datatransformation json regexmatch file:c:\\temp\\products.json");
         Console.WriteLine("        pattern:\\d+ options:ignorecase,compiled");
 
         if (haveError)
