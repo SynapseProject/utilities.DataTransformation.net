@@ -121,7 +121,7 @@ namespace Zephyr.DataTransformation
 
         public static string ConvertToFormat(string xml, FormatType targetFormatType)
         {
-            if (string.IsNullOrWhiteSpace(xml))
+            if( string.IsNullOrWhiteSpace( xml ) )
                 return null;
 
             string serializedData = "";
@@ -153,7 +153,7 @@ namespace Zephyr.DataTransformation
                     dynamic deserializedObject = JsonConvert.DeserializeObject<ExpandoObject>( serializedData, expConverter );
 
                     Serializer serializer = new Serializer();
-                    serializedData = serializer.Serialize( deserializedObject );
+                    serializedData = serializer.Serialize( deserializedObject as object );
 
                     break;
                 }

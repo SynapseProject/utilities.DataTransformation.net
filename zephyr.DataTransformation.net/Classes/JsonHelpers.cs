@@ -15,7 +15,7 @@ namespace Zephyr.DataTransformation
     {
         public static string Transform(string json, string xslt, bool preserveOutputAsIs = true)
         {
-            if ( string.IsNullOrWhiteSpace( json ) )
+            if( string.IsNullOrWhiteSpace( json ) )
                 return null;
 
             if( string.IsNullOrWhiteSpace( xslt ) )
@@ -28,7 +28,7 @@ namespace Zephyr.DataTransformation
 
         public static string ConvertToFormat(string json, FormatType targetFormatType)
         {
-            if (string.IsNullOrWhiteSpace(json))
+            if( string.IsNullOrWhiteSpace( json ) )
                 return null;
 
             string serializedData = "";
@@ -47,7 +47,7 @@ namespace Zephyr.DataTransformation
                     dynamic deserializedObject = JsonConvert.DeserializeObject<ExpandoObject>( json, expConverter );
 
                     Serializer serializer = new Serializer();
-                    serializedData = serializer.Serialize( deserializedObject );
+                    serializedData = serializer.Serialize( deserializedObject as object );
 
                     break;
                 }
@@ -70,7 +70,7 @@ namespace Zephyr.DataTransformation
 
         public static object Select(string json, string expression)
         {
-            if (string.IsNullOrWhiteSpace(json))
+            if( string.IsNullOrWhiteSpace( json ) )
                 return null;
 
             List<string> result = new List<string>();

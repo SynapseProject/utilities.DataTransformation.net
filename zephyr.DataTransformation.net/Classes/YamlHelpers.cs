@@ -78,7 +78,7 @@ namespace Zephyr.DataTransformation
             if( emitDefaultValues )
                 builder.EmitDefaults();
 
-            serializer = builder.Build();
+            serializer = builder.Build() as Serializer;
 
             serializer.Serialize( tw, data );
         }
@@ -118,7 +118,7 @@ namespace Zephyr.DataTransformation
                 DeserializerBuilder builder = new DeserializerBuilder();
                 if( ignoreUnmatchedProperties )
                     builder.IgnoreUnmatchedProperties();
-                Deserializer deserializer = builder.Build();
+                Deserializer deserializer = builder.Build() as Deserializer;
                 return deserializer.Deserialize<T>( reader );
             }
         }
@@ -128,7 +128,7 @@ namespace Zephyr.DataTransformation
             DeserializerBuilder builder = new DeserializerBuilder();
             if( ignoreUnmatchedProperties )
                 builder.IgnoreUnmatchedProperties();
-            Deserializer deserializer = builder.Build();
+            Deserializer deserializer = builder.Build() as Deserializer;
             return deserializer.Deserialize<T>( reader );
         }
 
@@ -140,7 +140,7 @@ namespace Zephyr.DataTransformation
                 DeserializerBuilder builder = new DeserializerBuilder();
                 if( ignoreUnmatchedProperties )
                     builder.IgnoreUnmatchedProperties();
-                Deserializer deserializer = builder.Build();
+                Deserializer deserializer = builder.Build() as Deserializer;
                 ssc = deserializer.Deserialize<T>( reader );
             }
             return ssc;
