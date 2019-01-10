@@ -153,7 +153,7 @@ namespace Zephyr.DataTransformation
                     dynamic deserializedObject = JsonConvert.DeserializeObject<ExpandoObject>( serializedData, expConverter );
 
                     Serializer serializer = new Serializer();
-                    serializedData = serializer.Serialize( deserializedObject as object );
+                    serializedData = serializer.Serialize( deserializedObject );
 
                     break;
                 }
