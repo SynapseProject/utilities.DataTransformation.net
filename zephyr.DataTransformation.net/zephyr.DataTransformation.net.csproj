@@ -33,13 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="YamlDotNet.Signed" Version="5.2.1" />
+    <PackageReference Include="YamlDotNet.Signed" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)scripts\setVersion.ps1 -path $(ProjectPath) -versionFile $(SolutionDir)scripts\AssemblyInfo.xml" />
+    <Exec Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File &quot;$(SolutionDir)scripts\setVersion.ps1&quot; -path &quot;$(ProjectPath)&quot; -versionFile &quot;$(SolutionDir)scripts\AssemblyInfo.xml&quot;" />
   </Target>
 
 </Project>
